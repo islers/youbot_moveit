@@ -17,6 +17,9 @@
     <group name="arm">
         <chain base_link="arm_link_0" tip_link="arm_link_5" />
     </group>
+    <group name="cam">
+        <link name="camera" />
+    </group>
     <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
     <group_state name="home" group="arm">
         <joint name="arm_joint_1" value="0.001" />
@@ -27,6 +30,8 @@
     </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="gripper" parent_link="arm_link_5" group="gripper" />
+    <end_effector name="cam" parent_link="arm_link_5" group="cam" />
+    <end_effector name="camera" parent_link="arm_link_5" group="arm" />
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
     <virtual_joint name="virtual_joint" type="planar" parent_frame="odom" child_link="base_footprint" />
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
@@ -61,6 +66,7 @@
     <disable_collisions link1="arm_link_3" link2="arm_link_4" reason="Adjacent" />
     <disable_collisions link1="arm_link_3" link2="arm_link_5" reason="Never" />
     <disable_collisions link1="arm_link_3" link2="base_footprint_inertia" reason="Never" />
+    <disable_collisions link1="arm_link_3" link2="camera" reason="Never" />
     <disable_collisions link1="arm_link_3" link2="gripper_finger_link_l" reason="Never" />
     <disable_collisions link1="arm_link_3" link2="gripper_finger_link_r" reason="Never" />
     <disable_collisions link1="arm_link_3" link2="gripper_palm_link" reason="Never" />
@@ -68,12 +74,14 @@
     <disable_collisions link1="arm_link_3" link2="wheel_link_br" reason="Never" />
     <disable_collisions link1="arm_link_4" link2="arm_link_5" reason="Adjacent" />
     <disable_collisions link1="arm_link_4" link2="base_footprint_inertia" reason="Never" />
+    <disable_collisions link1="arm_link_4" link2="camera" reason="Never" />
     <disable_collisions link1="arm_link_4" link2="gripper_finger_link_l" reason="Never" />
     <disable_collisions link1="arm_link_4" link2="gripper_finger_link_r" reason="Never" />
     <disable_collisions link1="arm_link_4" link2="gripper_palm_link" reason="Never" />
     <disable_collisions link1="arm_link_4" link2="wheel_link_bl" reason="Never" />
     <disable_collisions link1="arm_link_4" link2="wheel_link_br" reason="Never" />
     <disable_collisions link1="arm_link_5" link2="base_footprint_inertia" reason="Never" />
+    <disable_collisions link1="arm_link_5" link2="camera" reason="Adjacent" />
     <disable_collisions link1="arm_link_5" link2="gripper_finger_link_l" reason="Never" />
     <disable_collisions link1="arm_link_5" link2="gripper_finger_link_r" reason="Never" />
     <disable_collisions link1="arm_link_5" link2="gripper_palm_link" reason="Adjacent" />
@@ -99,6 +107,9 @@
     <disable_collisions link1="base_link" link2="wheel_link_br" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="wheel_link_fl" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="wheel_link_fr" reason="Adjacent" />
+    <disable_collisions link1="camera" link2="gripper_finger_link_l" reason="Never" />
+    <disable_collisions link1="camera" link2="gripper_finger_link_r" reason="Never" />
+    <disable_collisions link1="camera" link2="gripper_palm_link" reason="Default" />
     <disable_collisions link1="gripper_finger_link_l" link2="gripper_finger_link_r" reason="Never" />
     <disable_collisions link1="gripper_finger_link_l" link2="gripper_palm_link" reason="Adjacent" />
     <disable_collisions link1="gripper_finger_link_r" link2="gripper_palm_link" reason="Adjacent" />
